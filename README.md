@@ -6,112 +6,187 @@
 <title>ComboX - Gamer Hub</title>
 
 <style>
-body {
-  font-family: Arial;
-  margin: 0;
-  background: linear-gradient(135deg,#0f0f0f,#1a1a1a);
-  color: white;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family: 'Segoe UI', Arial;
+  background: radial-gradient(circle at top,#0a0a0a,#000);
+  color:#eaeaea;
 }
 
-header {
+header{
+  background: linear-gradient(90deg,#0f0f0f,#1c1c1c);
+  padding:25px;
+  text-align:center;
+  font-size:32px;
+  letter-spacing:2px;
+  border-bottom:1px solid #222;
+}
+
+nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
   background:#111;
-  padding:20px;
-  text-align:center;
-  font-size:28px;
+  padding:15px;
+  border-bottom:1px solid #222;
 }
 
-nav {
-  background:#222;
-  padding:10px;
-  text-align:center;
-}
-
-nav button {
-  margin:5px;
-  padding:10px;
-  background:#00ff88;
-  border:none;
+nav button{
+  background:#1f1f1f;
+  color:#fff;
+  border:1px solid #333;
+  padding:10px 15px;
   border-radius:8px;
   cursor:pointer;
+  transition:0.3s;
 }
 
-.section {display:none; padding:20px;}
-.active {display:block;}
-
-.ads {
-  background:#222;
-  padding:15px;
-  margin:15px 0;
-  border-radius:10px;
-  text-align:center;
+nav button:hover{
+  background:#00ff88;
+  color:#000;
+  transform:translateY(-2px);
 }
 
-input, button {
-  padding:10px;
-  margin:5px;
+.section{
+  display:none;
+  padding:30px;
+  max-width:900px;
+  margin:auto;
+}
+
+.active{display:block}
+
+.card{
+  background:#111;
+  border:1px solid #222;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow:0 0 10px rgba(0,255,136,0.1);
+}
+
+input{
+  width:70%;
+  padding:12px;
   border-radius:8px;
-  border:none;
+  border:1px solid #333;
+  background:#0f0f0f;
+  color:#fff;
 }
 
-#login {text-align:center; margin-top:100px;}
-#site {display:none;}
+button.action{
+  padding:12px 20px;
+  background:#00ff88;
+  border:none;
+  color:#000;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button.action:hover{
+  transform:scale(1.05);
+}
+
+.ads{
+  max-width:900px;
+  margin:30px auto;
+  padding:25px;
+  background:linear-gradient(135deg,#111,#1a1a1a);
+  border:1px solid #333;
+  border-radius:12px;
+  text-align:center;
+  font-size:14px;
+  color:#888;
+}
+
+#login{
+  text-align:center;
+  margin-top:150px;
+}
+
+#login input{
+  display:block;
+  margin:10px auto;
+  width:250px;
+}
+
+#site{display:none}
+
+h2{
+  margin-bottom:15px;
+  font-weight:500;
+}
+
+p{margin-top:10px}
+
 </style>
 </head>
 
 <body>
 
 <div id="login">
-  <h2>ðŸ” Login ComboX</h2>
+  <h2>ComboX Login</h2>
   <input id="user" placeholder="UsuÃ¡rio">
   <input id="pass" type="password" placeholder="Senha">
-  <br>
-  <button onclick="login()">Entrar</button>
+  <button class="action" onclick="login()">Entrar</button>
 </div>
 
 <div id="site">
-<header>ðŸ”¥ ComboX - Gamer Hub</header>
+<header>ComboX Gamer Hub</header>
 
 <nav>
-<button onclick="show('dicas')">ðŸ’¡ Combos</button>
-<button onclick="show('trades')">ðŸ’° Trades</button>
-<button onclick="show('wiki')">ðŸ“– Wiki</button>
-<button onclick="show('crew')">ðŸš¢ Crew</button>
-<button onclick="show('perfil')">ðŸ‘¤ Perfil</button>
-<button onclick="show('chat')">ðŸ’¬ Chat</button>
-<button onclick="logout()">ðŸšª Sair</button>
+<button onclick="show('dicas')">Combos</button>
+<button onclick="show('trades')">Trades</button>
+<button onclick="show('wiki')">Wiki</button>
+<button onclick="show('crew')">Crew</button>
+<button onclick="show('perfil')">Perfil</button>
+<button onclick="show('chat')">Chat</button>
+<button onclick="logout()">Sair</button>
 </nav>
 
-<div class="ads">ðŸ”¥ ANÃšNCIO TOPO</div>
+<div class="ads">EspaÃ§o de anÃºncio premium</div>
 
 <div id="dicas" class="section active">
-<h2>IA de Combos</h2>
-<input id="pergunta" placeholder="Pergunte algo...">
-<button onclick="responder()">Perguntar</button>
+<div class="card">
+<h2>Assistente de Combos</h2>
+<input id="pergunta" placeholder="Digite sua dÃºvida">
+<button class="action" onclick="responder()">Buscar</button>
 <p id="resposta"></p>
+</div>
 </div>
 
 <div id="trades" class="section">
-<h2>Postar Trade</h2>
-<input id="tradeInput" placeholder="Ex: Dragon por Leopard">
-<button onclick="addTrade()">Postar</button>
+<div class="card">
+<h2>Publicar Trade</h2>
+<input id="tradeInput" placeholder="Descreva sua troca">
+<button class="action" onclick="addTrade()">Postar</button>
 <div id="tradesList"></div>
+</div>
 </div>
 
 <div id="wiki" class="section">
-<h2>Wiki / IA</h2>
-<input id="wikiPergunta" placeholder="Como pegar item?">
-<button onclick="wikiResp()">Perguntar</button>
+<div class="card">
+<h2>Guia de Itens</h2>
+<input id="wikiPergunta" placeholder="Como obter item">
+<button class="action" onclick="wikiResp()">Buscar</button>
 <p id="wikiResposta"></p>
+</div>
 </div>
 
 <div id="crew" class="section">
-<h2>Divulgar Crew</h2>
+<div class="card">
+<h2>DivulgaÃ§Ã£o de Crew</h2>
 <input id="crewInput" placeholder="Nome da crew">
-<button onclick="addCrew()">Divulgar</button>
+<button class="action" onclick="addCrew()">Publicar</button>
 <div id="crewList"></div>
+</div>
 </div>
 
 <div id="perfil" class="section">
+<div class="card">
 <h2>Perfil</h2>
 <p id="nomeUser"></p>
 <h3>Ranking</h3>
@@ -121,17 +196,19 @@ input, button {
 <li>NoobMaster - 2000</li>
 </ol>
 </div>
-
-<div id="chat" class="section">
-<h2>Chat</h2>
-<input id="msg" placeholder="Mensagem...">
-<button onclick="sendMsg()">Enviar</button>
-<div id="chatBox"></div>
 </div>
 
-<div class="ads">ðŸ”¥ ANÃšNCIO MEIO</div>
+<div id="chat" class="section">
+<div class="card">
+<h2>Chat Global</h2>
+<input id="msg" placeholder="Mensagem">
+<button class="action" onclick="sendMsg()">Enviar</button>
+<div id="chatBox"></div>
+</div>
+</div>
 
-<div class="ads">ðŸ”¥ ANÃšNCIO FINAL</div>
+<div class="ads">EspaÃ§o de anÃºncio premium</div>
+<div class="ads">EspaÃ§o de anÃºncio premium</div>
 
 </div>
 
@@ -162,15 +239,13 @@ window.onload=function(){
 
 function responder(){
  let p=document.getElementById('pergunta').value.toLowerCase();
- let r='NÃ£o sei ainda';
- if(p.includes('combo')) r='Use combos rÃ¡pidos e frutas fortes';
+ let r='Sem resposta ainda';
+ if(p.includes('combo')) r='Use ataques rÃ¡pidos e combine habilidades.';
  document.getElementById('resposta').innerText=r;
 }
 
 function wikiResp(){
- let p=document.getElementById('wikiPergunta').value.toLowerCase();
- let r='Procure bosses ou raids';
- document.getElementById('wikiResposta').innerText=r;
+ document.getElementById('wikiResposta').innerText='Itens sÃ£o obtidos por bosses e eventos.';
 }
 
 function addTrade(){
