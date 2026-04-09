@@ -1,270 +1,189 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ComboX - Gamer Hub</title>
+<title>ComboX Wiki Pro</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
-body{
-  font-family: 'Segoe UI', Arial;
-  background: radial-gradient(circle at top,#0a0a0a,#000);
-  color:#eaeaea;
-}
+body{font-family:Arial;background:#f8f9fa;color:#202122}
 
 header{
-  background: linear-gradient(90deg,#0f0f0f,#1c1c1c);
-  padding:25px;
-  text-align:center;
-  font-size:32px;
-  letter-spacing:2px;
-  border-bottom:1px solid #222;
-}
-
-nav{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  background:#111;
-  padding:15px;
-  border-bottom:1px solid #222;
-}
-
-nav button{
-  background:#1f1f1f;
+  background:#202122;
   color:#fff;
-  border:1px solid #333;
-  padding:10px 15px;
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-nav button:hover{
-  background:#00ff88;
-  color:#000;
-  transform:translateY(-2px);
-}
-
-.section{
-  display:none;
-  padding:30px;
-  max-width:900px;
-  margin:auto;
-}
-
-.active{display:block}
-
-.card{
-  background:#111;
-  border:1px solid #222;
-  padding:20px;
-  border-radius:12px;
-  margin-bottom:20px;
-  box-shadow:0 0 10px rgba(0,255,136,0.1);
-}
-
-input{
-  width:70%;
-  padding:12px;
-  border-radius:8px;
-  border:1px solid #333;
-  background:#0f0f0f;
-  color:#fff;
-}
-
-button.action{
   padding:12px 20px;
-  background:#00ff88;
-  border:none;
-  color:#000;
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.3s;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-button.action:hover{
-  transform:scale(1.05);
+header input{
+  padding:8px;
+  border-radius:4px;
+  border:none;
+  width:200px;
 }
+
+.layout{display:flex}
+
+.sidebar{
+  width:260px;
+  background:#fff;
+  border-right:1px solid #ccc;
+  height:100vh;
+  overflow:auto;
+  padding:15px;
+}
+
+.sidebar h3{margin-bottom:10px}
+.sidebar a{
+  display:block;
+  padding:6px;
+  color:#0645ad;
+  text-decoration:none;
+}
+.sidebar a:hover{text-decoration:underline}
+
+.content{
+  flex:1;
+  padding:20px;
+}
+
+.article{
+  background:#fff;
+  padding:20px;
+  border:1px solid #ccc;
+}
+
+.article h1{margin-bottom:10px}
+
+.infobox{
+  float:right;
+  width:250px;
+  background:#f8f9fa;
+  border:1px solid #ccc;
+  padding:10px;
+  margin:10px;
+}
+
+.section{margin-top:20px}
 
 .ads{
-  max-width:900px;
-  margin:30px auto;
-  padding:25px;
-  background:linear-gradient(135deg,#111,#1a1a1a);
-  border:1px solid #333;
-  border-radius:12px;
+  background:#f1f1f1;
+  border:1px dashed #bbb;
+  padding:15px;
+  margin:20px 0;
   text-align:center;
-  font-size:14px;
-  color:#888;
 }
 
-#login{
-  text-align:center;
-  margin-top:150px;
-}
+.trade{border-bottom:1px solid #ddd;padding:8px}
+.like{color:#0645ad;cursor:pointer;margin-left:10px}
 
-#login input{
-  display:block;
-  margin:10px auto;
-  width:250px;
-}
-
-#site{display:none}
-
-h2{
-  margin-bottom:15px;
-  font-weight:500;
-}
-
-p{margin-top:10px}
+.chat{border:1px solid #ccc;height:150px;overflow:auto;padding:10px}
 
 </style>
 </head>
 
 <body>
 
-<div id="login">
-  <h2>ComboX Login</h2>
-  <input id="user" placeholder="UsuÃ¡rio">
-  <input id="pass" type="password" placeholder="Senha">
-  <button class="action" onclick="login()">Entrar</button>
+<header>
+<div>ComboX Wiki</div>
+<input placeholder="Pesquisar artigos...">
+</header>
+
+<div class="layout">
+
+<div class="sidebar">
+<h3>Conteúdo</h3>
+<a onclick="loadPage('home')">Página inicial</a>
+<a onclick="loadPage('combos')">Combos</a>
+<a onclick="loadPage('trades')">Trades</a>
+<a onclick="loadPage('itens')">Itens</a>
+<a onclick="loadPage('chat')">Chat</a>
 </div>
 
-<div id="site">
-<header>ComboX Gamer Hub</header>
-
-<nav>
-<button onclick="show('dicas')">Combos</button>
-<button onclick="show('trades')">Trades</button>
-<button onclick="show('wiki')">Wiki</button>
-<button onclick="show('crew')">Crew</button>
-<button onclick="show('perfil')">Perfil</button>
-<button onclick="show('chat')">Chat</button>
-<button onclick="logout()">Sair</button>
-</nav>
-
-<div class="ads">EspaÃ§o de anÃºncio premium</div>
-
-<div id="dicas" class="section active">
-<div class="card">
-<h2>Assistente de Combos</h2>
-<input id="pergunta" placeholder="Digite sua dÃºvida">
-<button class="action" onclick="responder()">Buscar</button>
-<p id="resposta"></p>
-</div>
-</div>
-
-<div id="trades" class="section">
-<div class="card">
-<h2>Publicar Trade</h2>
-<input id="tradeInput" placeholder="Descreva sua troca">
-<button class="action" onclick="addTrade()">Postar</button>
-<div id="tradesList"></div>
-</div>
-</div>
-
-<div id="wiki" class="section">
-<div class="card">
-<h2>Guia de Itens</h2>
-<input id="wikiPergunta" placeholder="Como obter item">
-<button class="action" onclick="wikiResp()">Buscar</button>
-<p id="wikiResposta"></p>
-</div>
-</div>
-
-<div id="crew" class="section">
-<div class="card">
-<h2>DivulgaÃ§Ã£o de Crew</h2>
-<input id="crewInput" placeholder="Nome da crew">
-<button class="action" onclick="addCrew()">Publicar</button>
-<div id="crewList"></div>
-</div>
-</div>
-
-<div id="perfil" class="section">
-<div class="card">
-<h2>Perfil</h2>
-<p id="nomeUser"></p>
-<h3>Ranking</h3>
-<ol>
-<li>TopPlayer - 2500</li>
-<li>ProGamer - 2300</li>
-<li>NoobMaster - 2000</li>
-</ol>
-</div>
-</div>
-
-<div id="chat" class="section">
-<div class="card">
-<h2>Chat Global</h2>
-<input id="msg" placeholder="Mensagem">
-<button class="action" onclick="sendMsg()">Enviar</button>
-<div id="chatBox"></div>
-</div>
-</div>
-
-<div class="ads">EspaÃ§o de anÃºncio premium</div>
-<div class="ads">EspaÃ§o de anÃºncio premium</div>
+<div class="content" id="content"></div>
 
 </div>
 
 <script>
-function login(){
- let u=document.getElementById('user').value;
- if(u){
-  localStorage.setItem('user',u);
-  document.getElementById('login').style.display='none';
-  document.getElementById('site').style.display='block';
- }
+
+function loadPage(page){
+
+if(page==='home'){
+content.innerHTML=`
+<div class='article'>
+<h1>Bem-vindo ao ComboX</h1>
+<p>Wiki completa com guias, estratégias e trades.</p>
+<div class='ads'>ANÚNCIO</div>
+</div>`;
 }
 
-function logout(){localStorage.clear(); location.reload();}
-
-function show(id){
- document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
- document.getElementById(id).classList.add('active');
+if(page==='combos'){
+content.innerHTML=`
+<div class='article'>
+<h1>Combos</h1>
+<div class='infobox'>
+<b>Dica</b><br>Use ataques rápidos
+</div>
+<p>Combos são sequências de ataques para maximizar dano.</p>
+<input id='pergunta'><button onclick='ia()'>Perguntar</button>
+<p id='resp'></p>
+</div>`;
 }
 
-window.onload=function(){
- if(localStorage.getItem('user')){
-  document.getElementById('login').style.display='none';
-  document.getElementById('site').style.display='block';
-  document.getElementById('nomeUser').innerText='UsuÃ¡rio: '+localStorage.getItem('user');
- }
+if(page==='trades'){
+content.innerHTML=`
+<div class='article'>
+<h1>Trades</h1>
+<input id='tradeInput'><button onclick='addTrade()'>Postar</button>
+<div id='trades'></div>
+</div>`;
 }
 
-function responder(){
- let p=document.getElementById('pergunta').value.toLowerCase();
- let r='Sem resposta ainda';
- if(p.includes('combo')) r='Use ataques rÃ¡pidos e combine habilidades.';
- document.getElementById('resposta').innerText=r;
+if(page==='itens'){
+content.innerHTML=`
+<div class='article'>
+<h1>Itens</h1>
+<p>Lista de itens e como obter.</p>
+</div>`;
 }
 
-function wikiResp(){
- document.getElementById('wikiResposta').innerText='Itens sÃ£o obtidos por bosses e eventos.';
+if(page==='chat'){
+content.innerHTML=`
+<div class='article'>
+<h1>Chat</h1>
+<input id='msg'><button onclick='sendMsg()'>Enviar</button>
+<div class='chat' id='chatBox'></div>
+</div>`;
+}
+}
+
+function ia(){
+let p=document.getElementById('pergunta').value.toLowerCase();
+let r='Sem resposta';
+if(p.includes('combo')) r='Use habilidades em sequência rápida';
+document.getElementById('resp').innerText=r;
 }
 
 function addTrade(){
- let t=document.getElementById('tradeInput').value;
- let p=document.createElement('p'); p.innerText=t;
- document.getElementById('tradesList').appendChild(p);
-}
-
-function addCrew(){
- let c=document.getElementById('crewInput').value;
- let p=document.createElement('p'); p.innerText=c;
- document.getElementById('crewList').appendChild(p);
+let t=document.getElementById('tradeInput').value;
+let div=document.createElement('div');
+div.className='trade';
+div.innerHTML=t+" <span class='like' onclick='this.innerText="Curtido"'>Curtir</span>";
+document.getElementById('trades').appendChild(div);
 }
 
 function sendMsg(){
- let m=document.getElementById('msg').value;
- let p=document.createElement('p'); p.innerText=m;
- document.getElementById('chatBox').appendChild(p);
+let m=document.getElementById('msg').value;
+let p=document.createElement('p');
+p.innerText=m;
+document.getElementById('chatBox').appendChild(p);
 }
+
+loadPage('home');
+
 </script>
 
 </body>
